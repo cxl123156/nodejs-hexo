@@ -4,26 +4,38 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hello World | no zheteng no life</title>
+    <title>CentOS 7设置静态IP | no zheteng no life</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Xianglin Chen">
     
 
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+    <meta name="description" content="CentOS 7配置静态IP的文件在/etc/sysconfig/network-script/目录中，在该目录中找到文件名为ifcfg-*的文件进行修改。
+
+
+*代表设备名若网卡名为eth0则该文件名为ifcfg-eth0，该名称可通过ifconfig或ip add命令查到CentOS 7最小安装时默认只安装了ip没有安装ifconfig需要自己安装
+
+# vim /etc/sysconfig/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2015/08/14/hello-world/index.html">
+<meta property="og:title" content="CentOS 7设置静态IP">
+<meta property="og:url" content="http://yoursite.com/2015/09/15/staticIp/index.html">
 <meta property="og:site_name" content="no zheteng no life">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2015-08-14T10:41:03.366Z">
+<meta property="og:description" content="CentOS 7配置静态IP的文件在/etc/sysconfig/network-script/目录中，在该目录中找到文件名为ifcfg-*的文件进行修改。
+
+
+*代表设备名若网卡名为eth0则该文件名为ifcfg-eth0，该名称可通过ifconfig或ip add命令查到CentOS 7最小安装时默认只安装了ip没有安装ifconfig需要自己安装
+
+# vim /etc/sysconfig/">
+<meta property="og:updated_time" content="2015-09-15T05:25:45.014Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="CentOS 7设置静态IP">
+<meta name="twitter:description" content="CentOS 7配置静态IP的文件在/etc/sysconfig/network-script/目录中，在该目录中找到文件名为ifcfg-*的文件进行修改。
+
+
+*代表设备名若网卡名为eth0则该文件名为ifcfg-eth0，该名称可通过ifconfig或ip add命令查到CentOS 7最小安装时默认只安装了ip没有安装ifconfig需要自己安装
+
+# vim /etc/sysconfig/">
 
     
     <link rel="alternative" href="/atom.xml" title="no zheteng no life" type="application/atom+xml">
@@ -83,14 +95,14 @@ Quick">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/08/14/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+      <a href="/2015/09/15/staticIp/" title="CentOS 7设置静态IP" itemprop="url">CentOS 7设置静态IP</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Xianglin Chen" target="_blank" itemprop="author">Xianglin Chen</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-14T10:41:03.366Z" itemprop="datePublished"> 發表於 2015-08-14</time>
+    <time datetime="2015-09-15T03:24:07.000Z" itemprop="datePublished"> 發表於 2015-09-15</time>
     
   </p>
 </header>
@@ -99,24 +111,94 @@ Quick">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+			
 		
 		</div>
 		
-		<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+		<p>   CentOS 7配置静态IP的文件在/etc/sysconfig/network-script/目录中，在该目录中找到文件名为ifcfg-<em>*</em>的文件进行修改。</p>
+
+<blockquote>
+<p><em>*</em>代表设备名若网卡名为eth0则该文件名为ifcfg-eth0，该名称可通过ifconfig或ip add命令查到<br>CentOS 7最小安装时默认只安装了ip没有安装ifconfig需要自己安装</p>
+</blockquote>
+<pre><code># vim /etc/sysconfig/network-script/ifcfg-*
+</code></pre>
+
+<a id="more"></a>
+<p>修改添加如下内容：</p>
+
+<pre><code>BOOTPROTO="static" #dhcp改为static   
+ONBOOT="yes" #开机启用本配置  
+IPADDR=192.168.19.128 #静态IP  
+GATEWAY=192.168.19.1 #默认网关  
+NETMASK=255.255.255.0 #子网掩码  
+DNS1=114.114.114.114 #DNS 配置  
+</code></pre>
+
+<p>修改后如下所示：</p>
+
+<pre><code>HWADDR="00:0C:29:39:65:EB"
+TYPE="Ethernet"
+BOOTPROTO="static"  #dhcp改为static
+DEFROUTE="yes"
+PEERDNS="yes"
+PEERROUTES="yes"
+IPV4_FAILURE_FATAL="no"
+IPV6INIT="yes"
+IPV6_AUTOCONF="yes"
+IPV6_DEFROUTE="yes"
+IPV6_PEERDNS="yes"
+IPV6_PEERROUTES="yes"
+IPV6_FAILURE_FATAL="no"
+NAME="eno16777736"
+UUID="21b82631-3913-45cd-bd56-9877ffda6e64"
+ONBOOT="yes" #开机启用本配置  
+IPADDR=192.168.19.128 #静态IP  
+GATEWAY=192.168.19.1 #默认网关  
+NETMASK=255.255.255.0 #子网掩码  
+DNS1=114.114.114.114 #DNS 配置  
+</code></pre>
+
+<p>最后重新启动网络服务即可</p>
+
+<pre><code># service network restart
+</code></pre>
+
+<p>通过ifconfig或ip add命令查看是否修改成功</p>
+
+<pre><code># ifconfig
+eno16777736: flags=4163<up,broadcast,running,multicast>  mtu 1500
+        inet 192.168.19.128  netmask 255.255.255.0  broadcast 192.168.19.255
+        inet6 fe80::20c:29ff:fe39:65eb  prefixlen 64  scopeid 0x20<link>
+        ether 00:0c:29:39:65:eb  txqueuelen 1000  (Ethernet)
+        RX packets 3562  bytes 299813 (292.7 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1973  bytes 288976 (282.2 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<up,loopback,running>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 0  (Local Loopback)
+        RX packets 26  bytes 2004 (1.9 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 26  bytes 2004 (1.9 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+</host></up,loopback,running></up,broadcast,running,multicast></code></pre>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/CentOS7/">CentOS7</a><a href="/tags/Linux/">Linux</a>
+  </div>
 
 </div>
 
@@ -124,7 +206,7 @@ Quick">
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2015/08/14/hello-world/" data-title="Hello World | no zheteng no life" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2015/09/15/staticIp/" data-title="CentOS 7设置静态IP | no zheteng no life" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -137,14 +219,14 @@ Quick">
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/08/14/FirstPost/" title="FirstPost">
-  <strong>上一篇：</strong><br/>
-  <span>
-  FirstPost</span>
+
+<div class="next">
+<a href="/2015/08/14/FirstPost/"  title="FirstPost">
+ <strong>下一篇：</strong><br/> 
+ <span>FirstPost
+</span>
 </a>
 </div>
-
 
 </nav>
 
@@ -156,7 +238,7 @@ Quick">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+ 
  
   </div>
 
