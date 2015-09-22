@@ -4,38 +4,29 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>CentOS 7设置静态IP | no zheteng no life</title>
+    <title>如何在windows下自动运行bat | no zheteng no life</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Xianglin Chen">
     
 
     
-    <meta name="description" content="CentOS 7配置静态IP的文件在/etc/sysconfig/network-script/目录中，在该目录中找到文件名为ifcfg-*的文件进行修改。
+    <meta name="description" content="直接写一个普通批处理文件，如果是需要让它在系统启动时运行，就将它放在C:\Windows\System32\GroupPolicy\MachineScripts\Startup目录下，如果是需要它在系统注销或关机时运行，就将它放在C:\Windows\System32\GrouppolicyMachine\Scripts\Shutdown目录下。
 
-
-*代表设备名若网卡名为eth0则该文件名为ifcfg-eth0，该名称可通过ifconfig或ip add命令查到CentOS 7最小安装时默认只安装了ip没有安装ifconfig需要自己安装
-
-# vim /etc/sysconfig/">
+放好之后就要进行指派。单击“开始→运行”，在运行">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS 7设置静态IP">
-<meta property="og:url" content="http://yoursite.com/2015/09/15/staticIp/index.html">
+<meta property="og:title" content="如何在windows下自动运行bat">
+<meta property="og:url" content="http://yoursite.com/2015/09/22/winStartRun/index.html">
 <meta property="og:site_name" content="no zheteng no life">
-<meta property="og:description" content="CentOS 7配置静态IP的文件在/etc/sysconfig/network-script/目录中，在该目录中找到文件名为ifcfg-*的文件进行修改。
+<meta property="og:description" content="直接写一个普通批处理文件，如果是需要让它在系统启动时运行，就将它放在C:\Windows\System32\GroupPolicy\MachineScripts\Startup目录下，如果是需要它在系统注销或关机时运行，就将它放在C:\Windows\System32\GrouppolicyMachine\Scripts\Shutdown目录下。
 
-
-*代表设备名若网卡名为eth0则该文件名为ifcfg-eth0，该名称可通过ifconfig或ip add命令查到CentOS 7最小安装时默认只安装了ip没有安装ifconfig需要自己安装
-
-# vim /etc/sysconfig/">
-<meta property="og:updated_time" content="2015-09-15T05:25:45.014Z">
+放好之后就要进行指派。单击“开始→运行”，在运行">
+<meta property="og:updated_time" content="2015-09-22T02:10:10.553Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS 7设置静态IP">
-<meta name="twitter:description" content="CentOS 7配置静态IP的文件在/etc/sysconfig/network-script/目录中，在该目录中找到文件名为ifcfg-*的文件进行修改。
+<meta name="twitter:title" content="如何在windows下自动运行bat">
+<meta name="twitter:description" content="直接写一个普通批处理文件，如果是需要让它在系统启动时运行，就将它放在C:\Windows\System32\GroupPolicy\MachineScripts\Startup目录下，如果是需要它在系统注销或关机时运行，就将它放在C:\Windows\System32\GrouppolicyMachine\Scripts\Shutdown目录下。
 
-
-*代表设备名若网卡名为eth0则该文件名为ifcfg-eth0，该名称可通过ifconfig或ip add命令查到CentOS 7最小安装时默认只安装了ip没有安装ifconfig需要自己安装
-
-# vim /etc/sysconfig/">
+放好之后就要进行指派。单击“开始→运行”，在运行">
 
     
     <link rel="alternative" href="/atom.xml" title="no zheteng no life" type="application/atom+xml">
@@ -95,14 +86,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/09/15/staticIp/" title="CentOS 7设置静态IP" itemprop="url">CentOS 7设置静态IP</a>
+      <a href="/2015/09/22/winStartRun/" title="如何在windows下自动运行bat" itemprop="url">如何在windows下自动运行bat</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Xianglin Chen" target="_blank" itemprop="author">Xianglin Chen</a>
 		
   <p class="article-time">
-    <time datetime="2015-09-15T03:24:07.000Z" itemprop="datePublished"> 發表於 2015-09-15</time>
+    <time datetime="2015-09-22T02:07:24.000Z" itemprop="datePublished"> 發表於 2015-09-22</time>
     
   </p>
 </header>
@@ -115,75 +106,13 @@
 		
 		</div>
 		
-		<p>   CentOS 7配置静态IP的文件在/etc/sysconfig/network-script/目录中，在该目录中找到文件名为ifcfg-<em>*</em>的文件进行修改。</p>
+		<p>直接写一个普通批处理文件，如果是需要让它在系统启动时运行，就将它放在C:\Windows\System32\GroupPolicy\MachineScripts\Startup目录下，如果是需要它在系统注销或关机时运行，就将它放在C:\Windows\System32\GrouppolicyMachine\Scripts\Shutdown目录下。</p>
+
+<p>放好之后就要进行指派。<br>单击“开始→运行”，在运行命令框中输入“gpedit.msc”，回车执行，打开“组策略”窗口。然后在组策略左侧的控制面板树窗格中，如图所示，依次展开“计算机配置→Windows设置→脚本（启动/关机）”节点，双击右侧详细资料窗格中的“启动”（或者“关机”）项目，在弹出的“启动属性”（“关机属性”）对话框中单击“添加”按钮，将你所写的批处理文件添加为新的计算机启动（关机）脚本。设置完成后，退出组策略窗口。以后启动（关闭）电脑时，相应命令会自动执行</p>
 
 <blockquote>
-<p><em>*</em>代表设备名若网卡名为eth0则该文件名为ifcfg-eth0，该名称可通过ifconfig或ip add命令查到<br>CentOS 7最小安装时默认只安装了ip没有安装ifconfig需要自己安装</p>
+<p>开关机脚本除了支持.bat格式的批处理脚本文件以外，还支持.wsf、.vbs、.js格式的脚本文件。</p>
 </blockquote>
-<pre><code># vim /etc/sysconfig/network-script/ifcfg-*
-</code></pre>
-
-<a id="more"></a>
-<p>修改添加如下内容：</p>
-
-<pre><code>BOOTPROTO="static" #dhcp改为static   
-ONBOOT="yes" #开机启用本配置  
-IPADDR=192.168.19.128 #静态IP  
-GATEWAY=192.168.19.1 #默认网关  
-NETMASK=255.255.255.0 #子网掩码  
-DNS1=114.114.114.114 #DNS 配置  
-</code></pre>
-
-<p>修改后如下所示：</p>
-
-<pre><code>HWADDR="00:0C:29:39:65:EB"
-TYPE="Ethernet"
-BOOTPROTO="static"  #dhcp改为static
-DEFROUTE="yes"
-PEERDNS="yes"
-PEERROUTES="yes"
-IPV4_FAILURE_FATAL="no"
-IPV6INIT="yes"
-IPV6_AUTOCONF="yes"
-IPV6_DEFROUTE="yes"
-IPV6_PEERDNS="yes"
-IPV6_PEERROUTES="yes"
-IPV6_FAILURE_FATAL="no"
-NAME="eno16777736"
-UUID="21b82631-3913-45cd-bd56-9877ffda6e64"
-ONBOOT="yes" #开机启用本配置  
-IPADDR=192.168.19.128 #静态IP  
-GATEWAY=192.168.19.1 #默认网关  
-NETMASK=255.255.255.0 #子网掩码  
-DNS1=114.114.114.114 #DNS 配置  
-</code></pre>
-
-<p>最后重新启动网络服务即可</p>
-
-<pre><code># service network restart
-</code></pre>
-
-<p>通过ifconfig或ip add命令查看是否修改成功</p>
-
-<pre><code># ifconfig
-eno16777736: flags=4163<up,broadcast,running,multicast>  mtu 1500
-        inet 192.168.19.128  netmask 255.255.255.0  broadcast 192.168.19.255
-        inet6 fe80::20c:29ff:fe39:65eb  prefixlen 64  scopeid 0x20<link>
-        ether 00:0c:29:39:65:eb  txqueuelen 1000  (Ethernet)
-        RX packets 3562  bytes 299813 (292.7 KiB)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 1973  bytes 288976 (282.2 KiB)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-lo: flags=73<up,loopback,running>  mtu 65536
-        inet 127.0.0.1  netmask 255.0.0.0
-        inet6 ::1  prefixlen 128  scopeid 0x10<host>
-        loop  txqueuelen 0  (Local Loopback)
-        RX packets 26  bytes 2004 (1.9 KiB)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 26  bytes 2004 (1.9 KiB)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-</host></up,loopback,running></up,broadcast,running,multicast></code></pre>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -191,13 +120,13 @@ lo: flags=73<up,loopback,running>  mtu 65536
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  <a class="article-category-link" href="/categories/windows/">windows</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/CentOS7/">CentOS7</a><a href="/tags/Linux/">Linux</a>
+  <span></span> <a href="/tags/Windows/">Windows</a>
   </div>
 
 </div>
@@ -206,7 +135,7 @@ lo: flags=73<up,loopback,running>  mtu 65536
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2015/09/15/staticIp/" data-title="CentOS 7设置静态IP | no zheteng no life" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2015/09/22/winStartRun/" data-title="如何在windows下自动运行bat | no zheteng no life" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -219,19 +148,11 @@ lo: flags=73<up,loopback,running>  mtu 65536
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/09/17/js1/" title="Javascript学习笔记（HTML DOM）">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Javascript学习笔记（HTML DOM）</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/08/14/FirstPost/"  title="FirstPost">
+<a href="/2015/09/17/js1/"  title="Javascript学习笔记（HTML DOM）">
  <strong>下一篇：</strong><br/> 
- <span>FirstPost
+ <span>Javascript学习笔记（HTML DOM）
 </span>
 </a>
 </div>

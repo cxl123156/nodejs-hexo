@@ -4,38 +4,37 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>CentOS 7设置静态IP | no zheteng no life</title>
+    <title>Javascript学习笔记（HTML DOM） | no zheteng no life</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Xianglin Chen">
     
 
     
-    <meta name="description" content="CentOS 7配置静态IP的文件在/etc/sysconfig/network-script/目录中，在该目录中找到文件名为ifcfg-*的文件进行修改。
+    <meta name="description" content="1.什么是DOM DOM是W3C标准（W3C万维网联盟）DOM 是 Document Object Model（文档对象模型）的缩写。 DOM定义了访问HTML和XML文档的标准：“W3C 文档对象模型 （DOM） 是中立于平台和语言的接口，它允许程序和脚本动态地访问和更新文档的内容、结构和样式。”  W3C DOM被分为三个不同部分：
 
 
-*代表设备名若网卡名为eth0则该文件名为ifcfg-eth0，该名称可通过ifconfig或ip add命令查到CentOS 7最小安装时默认只安装了ip没有安装ifconfig需要自己安装
-
-# vim /etc/sysconfig/">
+核心 DOM - 针对任何结构化文档的标准模型
+XML">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS 7设置静态IP">
-<meta property="og:url" content="http://yoursite.com/2015/09/15/staticIp/index.html">
+<meta property="og:title" content="Javascript学习笔记（HTML DOM）">
+<meta property="og:url" content="http://yoursite.com/2015/09/17/js1/index.html">
 <meta property="og:site_name" content="no zheteng no life">
-<meta property="og:description" content="CentOS 7配置静态IP的文件在/etc/sysconfig/network-script/目录中，在该目录中找到文件名为ifcfg-*的文件进行修改。
+<meta property="og:description" content="1.什么是DOM DOM是W3C标准（W3C万维网联盟）DOM 是 Document Object Model（文档对象模型）的缩写。 DOM定义了访问HTML和XML文档的标准：“W3C 文档对象模型 （DOM） 是中立于平台和语言的接口，它允许程序和脚本动态地访问和更新文档的内容、结构和样式。”  W3C DOM被分为三个不同部分：
 
 
-*代表设备名若网卡名为eth0则该文件名为ifcfg-eth0，该名称可通过ifconfig或ip add命令查到CentOS 7最小安装时默认只安装了ip没有安装ifconfig需要自己安装
-
-# vim /etc/sysconfig/">
-<meta property="og:updated_time" content="2015-09-15T05:25:45.014Z">
+核心 DOM - 针对任何结构化文档的标准模型
+XML">
+<meta property="og:image" content="http://www.w3school.com.cn/i/ct_htmltree.gif">
+<meta property="og:image" content="http://www.w3school.com.cn/i/dom_navigate.gif">
+<meta property="og:updated_time" content="2015-09-18T06:55:30.903Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS 7设置静态IP">
-<meta name="twitter:description" content="CentOS 7配置静态IP的文件在/etc/sysconfig/network-script/目录中，在该目录中找到文件名为ifcfg-*的文件进行修改。
+<meta name="twitter:title" content="Javascript学习笔记（HTML DOM）">
+<meta name="twitter:description" content="1.什么是DOM DOM是W3C标准（W3C万维网联盟）DOM 是 Document Object Model（文档对象模型）的缩写。 DOM定义了访问HTML和XML文档的标准：“W3C 文档对象模型 （DOM） 是中立于平台和语言的接口，它允许程序和脚本动态地访问和更新文档的内容、结构和样式。”  W3C DOM被分为三个不同部分：
 
 
-*代表设备名若网卡名为eth0则该文件名为ifcfg-eth0，该名称可通过ifconfig或ip add命令查到CentOS 7最小安装时默认只安装了ip没有安装ifconfig需要自己安装
-
-# vim /etc/sysconfig/">
+核心 DOM - 针对任何结构化文档的标准模型
+XML">
 
     
     <link rel="alternative" href="/atom.xml" title="no zheteng no life" type="application/atom+xml">
@@ -95,14 +94,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/09/15/staticIp/" title="CentOS 7设置静态IP" itemprop="url">CentOS 7设置静态IP</a>
+      <a href="/2015/09/17/js1/" title="Javascript学习笔记（HTML DOM）" itemprop="url">Javascript学习笔记（HTML DOM）</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Xianglin Chen" target="_blank" itemprop="author">Xianglin Chen</a>
 		
   <p class="article-time">
-    <time datetime="2015-09-15T03:24:07.000Z" itemprop="datePublished"> 發表於 2015-09-15</time>
+    <time datetime="2015-09-17T01:08:05.000Z" itemprop="datePublished"> 發表於 2015-09-17</time>
     
   </p>
 </header>
@@ -111,79 +110,84 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-什么是DOM"><span class="toc-number">1.</span> <span class="toc-text">1.什么是DOM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-XML_DOM"><span class="toc-number">2.</span> <span class="toc-text">2.XML DOM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-HTML_DOM"><span class="toc-number">3.</span> <span class="toc-text">3.HTML DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DOM节点树"><span class="toc-number">3.1.</span> <span class="toc-text">DOM节点树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#节点、父子和同胞"><span class="toc-number">3.2.</span> <span class="toc-text">节点、父子和同胞</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#innerHTML属性"><span class="toc-number">3.3.</span> <span class="toc-text">innerHTML属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#创建新的_HTML_元素_-_appendChild()"><span class="toc-number">3.4.</span> <span class="toc-text">创建新的 HTML 元素 - appendChild()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#HTML_DOM_节点列表"><span class="toc-number">3.5.</span> <span class="toc-text">HTML DOM 节点列表</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<p>   CentOS 7配置静态IP的文件在/etc/sysconfig/network-script/目录中，在该目录中找到文件名为ifcfg-<em>*</em>的文件进行修改。</p>
+		<h4 id="1-什么是DOM">1.什么是DOM</h4><p> DOM是W3C标准（W3C万维网联盟）DOM 是 Document Object Model（文档对象模型）的缩写。</p><br><p> DOM定义了访问HTML和XML文档的标准：<br><br>“W3C 文档对象模型 （DOM） 是中立于平台和语言的接口，它允许程序和脚本动态地访问和更新文档的内容、结构和样式。” </p><br><p> W3C DOM被分为三个不同部分：</p>
+
+<ul>
+<li>核心 DOM - 针对任何结构化文档的标准模型</li>
+<li>XML DOM - 针对 XML 文档的标准模型</li>
+<li>HTML DOM - 针对 HTML 文档的标准模型<br><br></li>
+</ul>
+<hr>
+<h4 id="2-XML_DOM">2.XML DOM</h4><p> XML DOM 定义了所有 XML 元素的对象和属性，以及访问它们的方法。</p>
+
+<hr>
+<h4 id="3-HTML_DOM">3.HTML DOM</h4><p>HTML DOM是：</p>
+
+<ul>
+<li>HTML的标准对象模型</li>
+<li>HTML的标准编程接口</li>
+<li>W3C标准</li>
+</ul>
+<p>HTML DOM定义了所有HTML元素的对象和属性，以及访问它们的方法。换言之，HTML DOM 是关于如何获取、修改、添加或删除 HTML 元素的标准。</p>
+
+<h5 id="DOM节点树">DOM节点树</h5><p>根据 W3C 的 HTML DOM 标准，HTML 文档中的所有内容都是节点：</p>
+
+<ul>
+<li>整个文档是一个文档节点</li>
+<li>每个 HTML 元素是元素节点</li>
+<li>HTML 元素内的文本是文本节点</li>
+<li>每个 HTML 属性是属性节点</li>
+<li>注释是注释节点</li>
+</ul>
+<p>HTML DOM 将 HTML 文档视作树结构。这种结构被称为节点树：</p>
+
+<p><img src="http://www.w3school.com.cn/i/ct_htmltree.gif" alt="Alt text" title="DOM节点树"></p>
+<p>通过 HTML DOM，树中的所有节点均可通过 JavaScript 进行访问。所有 HTML 元素（节点）均可被修改，也可以创建或删除节点。</p>
+
+<h5 id="节点、父子和同胞">节点、父子和同胞</h5><p>节点树中的节点彼此拥有层级关系。父（parent）、子（child）和同胞（sibling）等术语用于描述这些关系。父节点拥有子节点。同级的子节点被称为同胞（兄弟或姐妹）。</p>
+
+<ul>
+<li>在节点树中，顶端节点被称为根（root）</li>
+<li>每个节点都有父节点、除了根（它没有父节点）</li>
+<li>一个节点可拥有任意数量的子</li>
+<li>同胞是拥有相同父节点的节点</li>
+</ul>
+<p><img src="http://www.w3school.com.cn/i/dom_navigate.gif" alt="Alt text" title="节点父、子和同胞关系图"></p>
+<h5 id="innerHTML属性">innerHTML属性</h5><p>获取元素内容的最简单方法是使用 innerHTML 属性。<br>innerHTML 属性对于获取或替换 HTML 元素的内容很有用。</p>
 
 <blockquote>
-<p><em>*</em>代表设备名若网卡名为eth0则该文件名为ifcfg-eth0，该名称可通过ifconfig或ip add命令查到<br>CentOS 7最小安装时默认只安装了ip没有安装ifconfig需要自己安装</p>
+<p>例子</p>
 </blockquote>
-<pre><code># vim /etc/sysconfig/network-script/ifcfg-*
-</code></pre>
+<pre><code><span class="tag">&lt; html &gt;</span>
+<span class="tag">&lt; body &gt;</span>
+<span class="tag">&lt; p id="intro"&gt;</span><span class="keyword">Hello</span> World!&amp;lt /p &gt;
+<span class="tag">&lt; script &gt;</span>
+<span class="keyword">var</span> txt=document.getElementById(<span class="string">"intro"</span>).innerHTML;
+<span class="keyword">document</span>.write(txt);
+<span class="tag">&lt; /script &gt;</span>
+<span class="tag">&lt; /body &gt;</span>
+<span class="tag">&lt; /html &gt;</span>
+</code></pre><h5 id="创建新的_HTML_元素_-_appendChild()">创建新的 HTML 元素 - appendChild()</h5><p>如需向 HTML DOM 添加新元素，首先必须创建该元素，然后把它追加到已有的元素上。<br></p>
 
-<a id="more"></a>
-<p>修改添加如下内容：</p>
-
-<pre><code>BOOTPROTO="static" #dhcp改为static   
-ONBOOT="yes" #开机启用本配置  
-IPADDR=192.168.19.128 #静态IP  
-GATEWAY=192.168.19.1 #默认网关  
-NETMASK=255.255.255.0 #子网掩码  
-DNS1=114.114.114.114 #DNS 配置  
-</code></pre>
-
-<p>修改后如下所示：</p>
-
-<pre><code>HWADDR="00:0C:29:39:65:EB"
-TYPE="Ethernet"
-BOOTPROTO="static"  #dhcp改为static
-DEFROUTE="yes"
-PEERDNS="yes"
-PEERROUTES="yes"
-IPV4_FAILURE_FATAL="no"
-IPV6INIT="yes"
-IPV6_AUTOCONF="yes"
-IPV6_DEFROUTE="yes"
-IPV6_PEERDNS="yes"
-IPV6_PEERROUTES="yes"
-IPV6_FAILURE_FATAL="no"
-NAME="eno16777736"
-UUID="21b82631-3913-45cd-bd56-9877ffda6e64"
-ONBOOT="yes" #开机启用本配置  
-IPADDR=192.168.19.128 #静态IP  
-GATEWAY=192.168.19.1 #默认网关  
-NETMASK=255.255.255.0 #子网掩码  
-DNS1=114.114.114.114 #DNS 配置  
-</code></pre>
-
-<p>最后重新启动网络服务即可</p>
-
-<pre><code># service network restart
-</code></pre>
-
-<p>通过ifconfig或ip add命令查看是否修改成功</p>
-
-<pre><code># ifconfig
-eno16777736: flags=4163<up,broadcast,running,multicast>  mtu 1500
-        inet 192.168.19.128  netmask 255.255.255.0  broadcast 192.168.19.255
-        inet6 fe80::20c:29ff:fe39:65eb  prefixlen 64  scopeid 0x20<link>
-        ether 00:0c:29:39:65:eb  txqueuelen 1000  (Ethernet)
-        RX packets 3562  bytes 299813 (292.7 KiB)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 1973  bytes 288976 (282.2 KiB)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-lo: flags=73<up,loopback,running>  mtu 65536
-        inet 127.0.0.1  netmask 255.0.0.0
-        inet6 ::1  prefixlen 128  scopeid 0x10<host>
-        loop  txqueuelen 0  (Local Loopback)
-        RX packets 26  bytes 2004 (1.9 KiB)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 26  bytes 2004 (1.9 KiB)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-</host></up,loopback,running></up,broadcast,running,multicast></code></pre>
+<blockquote>
+<p>例子</p>
+</blockquote>
+<pre><code>&lt; <span class="keyword">div</span> <span class="property">id</span>=<span class="string">"div1"</span>&gt;
+&lt; p <span class="property">id</span>=<span class="string">"p1"</span>&gt;This <span class="keyword">is</span> a <span class="property">paragraph</span>.&lt; /p&gt;
+&lt; p <span class="property">id</span>=<span class="string">"p2"</span>&gt;This <span class="keyword">is</span> another <span class="property">paragraph</span>.&lt; /p&gt;
+&lt; /<span class="keyword">div</span>&gt;
+&lt; <span class="keyword">script</span>&gt;
+var para=document.createElement(<span class="string">"p"</span>);
+var node=document.createTextNode(<span class="string">"This is new."</span>);
+para.appendChild(node);
+var element=document.getElementById(<span class="string">"div1"</span>);
+element.appendChild(para);
+&lt; /<span class="keyword">script</span>&gt;
+</code></pre><h5 id="HTML_DOM_节点列表">HTML DOM 节点列表</h5><p></p><p>getElementsByTagName() 方法返回节点列表。节点列表是一个节点数组。</p><br>    x=document.getElementsByTagName(“p”);<br>    for (i=0;i &lt; x.length;i++)  //length 属性定义节点列表中节点的数量。<br>    {<br>    document.write(x[i].innerHTML);<br>    document.write(“&lt; br /&gt;”);<br>    }<p></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -191,13 +195,13 @@ lo: flags=73<up,loopback,running>  mtu 65536
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/CentOS7/">CentOS7</a><a href="/tags/Linux/">Linux</a>
+  <span></span> <a href="/tags/HTML/">HTML</a><a href="/tags/Javascript/">Javascript</a><a href="/tags/js/">js</a>
   </div>
 
 </div>
@@ -206,7 +210,7 @@ lo: flags=73<up,loopback,running>  mtu 65536
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2015/09/15/staticIp/" data-title="CentOS 7设置静态IP | no zheteng no life" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2015/09/17/js1/" data-title="Javascript学习笔记（HTML DOM） | no zheteng no life" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -220,18 +224,18 @@ lo: flags=73<up,loopback,running>  mtu 65536
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/09/17/js1/" title="Javascript学习笔记（HTML DOM）">
+ <a href="/2015/09/22/winStartRun/" title="如何在windows下自动运行bat">
   <strong>上一篇：</strong><br/>
   <span>
-  Javascript学习笔记（HTML DOM）</span>
+  如何在windows下自动运行bat</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/08/14/FirstPost/"  title="FirstPost">
+<a href="/2015/09/15/staticIp/"  title="CentOS 7设置静态IP">
  <strong>下一篇：</strong><br/> 
- <span>FirstPost
+ <span>CentOS 7设置静态IP
 </span>
 </a>
 </div>
@@ -246,7 +250,7 @@ lo: flags=73<up,loopback,running>  mtu 65536
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-什么是DOM"><span class="toc-number">1.</span> <span class="toc-text">1.什么是DOM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-XML_DOM"><span class="toc-number">2.</span> <span class="toc-text">2.XML DOM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-HTML_DOM"><span class="toc-number">3.</span> <span class="toc-text">3.HTML DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DOM节点树"><span class="toc-number">3.1.</span> <span class="toc-text">DOM节点树</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#节点、父子和同胞"><span class="toc-number">3.2.</span> <span class="toc-text">节点、父子和同胞</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#innerHTML属性"><span class="toc-number">3.3.</span> <span class="toc-text">innerHTML属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#创建新的_HTML_元素_-_appendChild()"><span class="toc-number">3.4.</span> <span class="toc-text">创建新的 HTML 元素 - appendChild()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#HTML_DOM_节点列表"><span class="toc-number">3.5.</span> <span class="toc-text">HTML DOM 节点列表</span></a></li></ol></li></ol>
  
   </div>
 

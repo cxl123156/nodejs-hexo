@@ -81,6 +81,205 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/09/22/winStartRun/" title="如何在windows下自动运行bat" itemprop="url">如何在windows下自动运行bat</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Xianglin Chen" target="_blank" itemprop="author">Xianglin Chen</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-22T02:07:24.000Z" itemprop="datePublished"> 發表於 2015-09-22</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>直接写一个普通批处理文件，如果是需要让它在系统启动时运行，就将它放在C:\Windows\System32\GroupPolicy\MachineScripts\Startup目录下，如果是需要它在系统注销或关机时运行，就将它放在C:\Windows\System32\GrouppolicyMachine\Scripts\Shutdown目录下。</p>
+
+<p>放好之后就要进行指派。<br>单击“开始→运行”，在运行命令框中输入“gpedit.msc”，回车执行，打开“组策略”窗口。然后在组策略左侧的控制面板树窗格中，如图所示，依次展开“计算机配置→Windows设置→脚本（启动/关机）”节点，双击右侧详细资料窗格中的“启动”（或者“关机”）项目，在弹出的“启动属性”（“关机属性”）对话框中单击“添加”按钮，将你所写的批处理文件添加为新的计算机启动（关机）脚本。设置完成后，退出组策略窗口。以后启动（关闭）电脑时，相应命令会自动执行</p>
+
+<blockquote>
+<p>开关机脚本除了支持.bat格式的批处理脚本文件以外，还支持.wsf、.vbs、.js格式的脚本文件。</p>
+</blockquote>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/windows/">windows</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Windows/">Windows</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/17/js1/" title="Javascript学习笔记（HTML DOM）" itemprop="url">Javascript学习笔记（HTML DOM）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Xianglin Chen" target="_blank" itemprop="author">Xianglin Chen</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-17T01:08:05.000Z" itemprop="datePublished"> 發表於 2015-09-17</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h4 id="1-什么是DOM">1.什么是DOM</h4><p> DOM是W3C标准（W3C万维网联盟）DOM 是 Document Object Model（文档对象模型）的缩写。</p><br><p> DOM定义了访问HTML和XML文档的标准：<br><br>“W3C 文档对象模型 （DOM） 是中立于平台和语言的接口，它允许程序和脚本动态地访问和更新文档的内容、结构和样式。” </p><br><p> W3C DOM被分为三个不同部分：</p>
+
+<ul>
+<li>核心 DOM - 针对任何结构化文档的标准模型</li>
+<li>XML DOM - 针对 XML 文档的标准模型</li>
+<li>HTML DOM - 针对 HTML 文档的标准模型<br><br></li>
+</ul>
+<hr>
+<h4 id="2-XML_DOM">2.XML DOM</h4><p> XML DOM 定义了所有 XML 元素的对象和属性，以及访问它们的方法。</p>
+
+<hr>
+<h4 id="3-HTML_DOM">3.HTML DOM</h4><p>HTML DOM是：</p>
+
+<ul>
+<li>HTML的标准对象模型</li>
+<li>HTML的标准编程接口</li>
+<li>W3C标准</li>
+</ul>
+<p>HTML DOM定义了所有HTML元素的对象和属性，以及访问它们的方法。换言之，HTML DOM 是关于如何获取、修改、添加或删除 HTML 元素的标准。</p>
+
+<h5 id="DOM节点树">DOM节点树</h5><p>根据 W3C 的 HTML DOM 标准，HTML 文档中的所有内容都是节点：</p>
+
+<ul>
+<li>整个文档是一个文档节点</li>
+<li>每个 HTML 元素是元素节点</li>
+<li>HTML 元素内的文本是文本节点</li>
+<li>每个 HTML 属性是属性节点</li>
+<li>注释是注释节点</li>
+</ul>
+<p>HTML DOM 将 HTML 文档视作树结构。这种结构被称为节点树：</p>
+
+<p><img src="http://www.w3school.com.cn/i/ct_htmltree.gif" alt="Alt text" title="DOM节点树"></p>
+<p>通过 HTML DOM，树中的所有节点均可通过 JavaScript 进行访问。所有 HTML 元素（节点）均可被修改，也可以创建或删除节点。</p>
+
+<h5 id="节点、父子和同胞">节点、父子和同胞</h5><p>节点树中的节点彼此拥有层级关系。父（parent）、子（child）和同胞（sibling）等术语用于描述这些关系。父节点拥有子节点。同级的子节点被称为同胞（兄弟或姐妹）。</p>
+
+<ul>
+<li>在节点树中，顶端节点被称为根（root）</li>
+<li>每个节点都有父节点、除了根（它没有父节点）</li>
+<li>一个节点可拥有任意数量的子</li>
+<li>同胞是拥有相同父节点的节点</li>
+</ul>
+<p><img src="http://www.w3school.com.cn/i/dom_navigate.gif" alt="Alt text" title="节点父、子和同胞关系图"></p>
+<h5 id="innerHTML属性">innerHTML属性</h5><p>获取元素内容的最简单方法是使用 innerHTML 属性。<br>innerHTML 属性对于获取或替换 HTML 元素的内容很有用。</p>
+
+<blockquote>
+<p>例子</p>
+</blockquote>
+<pre><code><span class="tag">&lt; html &gt;</span>
+<span class="tag">&lt; body &gt;</span>
+<span class="tag">&lt; p id="intro"&gt;</span><span class="keyword">Hello</span> World!&amp;lt /p &gt;
+<span class="tag">&lt; script &gt;</span>
+<span class="keyword">var</span> txt=document.getElementById(<span class="string">"intro"</span>).innerHTML;
+<span class="keyword">document</span>.write(txt);
+<span class="tag">&lt; /script &gt;</span>
+<span class="tag">&lt; /body &gt;</span>
+<span class="tag">&lt; /html &gt;</span>
+</code></pre><h5 id="创建新的_HTML_元素_-_appendChild()">创建新的 HTML 元素 - appendChild()</h5><p>如需向 HTML DOM 添加新元素，首先必须创建该元素，然后把它追加到已有的元素上。<br></p>
+
+<blockquote>
+<p>例子</p>
+</blockquote>
+<pre><code>&lt; <span class="keyword">div</span> <span class="property">id</span>=<span class="string">"div1"</span>&gt;
+&lt; p <span class="property">id</span>=<span class="string">"p1"</span>&gt;This <span class="keyword">is</span> a <span class="property">paragraph</span>.&lt; /p&gt;
+&lt; p <span class="property">id</span>=<span class="string">"p2"</span>&gt;This <span class="keyword">is</span> another <span class="property">paragraph</span>.&lt; /p&gt;
+&lt; /<span class="keyword">div</span>&gt;
+&lt; <span class="keyword">script</span>&gt;
+var para=document.createElement(<span class="string">"p"</span>);
+var node=document.createTextNode(<span class="string">"This is new."</span>);
+para.appendChild(node);
+var element=document.getElementById(<span class="string">"div1"</span>);
+element.appendChild(para);
+&lt; /<span class="keyword">script</span>&gt;
+</code></pre><h5 id="HTML_DOM_节点列表">HTML DOM 节点列表</h5><p></p><p>getElementsByTagName() 方法返回节点列表。节点列表是一个节点数组。</p><br>    x=document.getElementsByTagName(“p”);<br>    for (i=0;i &lt; x.length;i++)  //length 属性定义节点列表中节点的数量。<br>    {<br>    document.write(x[i].innerHTML);<br>    document.write(“&lt; br /&gt;”);<br>    }<p></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/HTML/">HTML</a><a href="/tags/Javascript/">Javascript</a><a href="/tags/js/">js</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/09/15/staticIp/" title="CentOS 7设置静态IP" itemprop="url">CentOS 7设置静态IP</a>
   </h1>
   <p class="article-author">By
@@ -279,7 +478,15 @@
 		  
 		
 		  
+			<li><a href="/categories/Javascript/" title="Javascript">Javascript<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/Linux/" title="Linux">Linux<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/windows/" title="windows">windows<sup>1</sup></a></li>
 		  
 		
 		</ul>
@@ -300,11 +507,27 @@
 			
 		
 			
+				<li><a href="/tags/Windows/" title="Windows">Windows<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Linux/" title="Linux">Linux<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/CentOS7/" title="CentOS7">CentOS7<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/js/" title="js">js<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML/" title="HTML">HTML<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -350,7 +573,7 @@
 	
 	<section class="info">
 		<p> I&#39;m Xianglin Chen , a noob to coding and linux. <br/>
-			Remember ：No zuo no die.</p>
+			No zuo no die I just wanna try</p>
 	</section>
 	 
 	<div class="social-font" class="clearfix">
