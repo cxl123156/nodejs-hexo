@@ -81,6 +81,104 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/09/24/linuxMysql/" title="MariaDB 在Linux下设置编码" itemprop="url">MariaDB 在Linux下设置编码</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Xianglin Chen" target="_blank" itemprop="author">Xianglin Chen</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-24T02:03:26.000Z" itemprop="datePublished"> 發表於 2015-09-24</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>修改/etc/my.cnf文件在文件中添加以下字段:</p>
+
+<pre><code>[mysqld] 
+init_connect='SET collation_connection = utf8_unicode_ci' 
+init_connect='SET NAMES utf8' 
+character-set-server=utf8 
+collation-server=utf8_unicode_ci 
+skip-character-set-client-handshake
+
+[client]
+default-character-set=utf8
+
+[mysql]
+default-character-set=utf8</code></pre>
+<p>修改后重新启动数据库服务</p>
+查看修改结果
+<pre><code>mysql> MariaDB [(none)]> show variables like "%character%";show variables like "%collation%";
++--------------------------+----------------------------+
+| Variable_name            | Value                      |
++--------------------------+----------------------------+
+| character_set_client     | utf8                       |
+| character_set_connection | utf8                       |
+| character_set_database   | utf8                       |
+| character_set_filesystem | binary                     |
+| character_set_results    | utf8                       |
+| character_set_server     | utf8                       |
+| character_set_system     | utf8                       |
+| character_sets_dir       | /usr/share/mysql/charsets/ |
++--------------------------+----------------------------+
+8 rows in set (0.00 sec)
+
++----------------------+-----------------+
+| Variable_name        | Value           |
++----------------------+-----------------+
+| collation_connection | utf8_unicode_ci |
+| collation_database   | utf8_unicode_ci |
+| collation_server     | utf8_unicode_ci |
++----------------------+-----------------+
+3 rows in set (0.01 sec)
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Linux/">Linux</a><a href="/tags/mysql/">mysql</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/09/22/winStartRun/" title="如何在windows下自动运行bat" itemprop="url">如何在windows下自动运行bat</a>
   </h1>
   <p class="article-author">By
@@ -482,7 +580,7 @@ element.appendChild(para);
 		  
 		
 		  
-			<li><a href="/categories/Linux/" title="Linux">Linux<sup>1</sup></a></li>
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>2</sup></a></li>
 		  
 		
 		  
@@ -499,6 +597,10 @@ element.appendChild(para);
 		<ul class="clearfix">
 		
 			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
 			
 		
@@ -511,11 +613,11 @@ element.appendChild(para);
 			
 		
 			
-				<li><a href="/tags/Linux/" title="Linux">Linux<sup>1</sup></a></li>
+				<li><a href="/tags/CentOS7/" title="CentOS7">CentOS7<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/CentOS7/" title="CentOS7">CentOS7<sup>1</sup></a></li>
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>1</sup></a></li>
 			
 		
 			
