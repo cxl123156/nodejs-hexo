@@ -1,0 +1,561 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Spring Security学习----登录、注销 | no zheteng no life</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Xianglin Chen">
+    
+
+    
+    <meta name="description" content="本文使用Spring Security4.0.3,Spring和SpringMVC均为4.2.3以及MyBatis3.3.0
+（本文省略了spring以及springMVC的配置）
+
+&amp;emsp;&amp;emsp;最近在自学Spring Security网上找的相关教程基本都是3.0，3.2版本的Spring Security，由于我使用的是4.0的，有些地方和之前版本不同，导致遇到不少坑。在此记录下我">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Security学习----登录、注销">
+<meta property="og:url" content="http://yoursite.com/2015/12/02/SpringSecurity-1/index.html">
+<meta property="og:site_name" content="no zheteng no life">
+<meta property="og:description" content="本文使用Spring Security4.0.3,Spring和SpringMVC均为4.2.3以及MyBatis3.3.0
+（本文省略了spring以及springMVC的配置）
+
+&amp;emsp;&amp;emsp;最近在自学Spring Security网上找的相关教程基本都是3.0，3.2版本的Spring Security，由于我使用的是4.0的，有些地方和之前版本不同，导致遇到不少坑。在此记录下我">
+<meta property="og:updated_time" content="2015-12-02T07:21:00.880Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring Security学习----登录、注销">
+<meta name="twitter:description" content="本文使用Spring Security4.0.3,Spring和SpringMVC均为4.2.3以及MyBatis3.3.0
+（本文省略了spring以及springMVC的配置）
+
+&amp;emsp;&amp;emsp;最近在自学Spring Security网上找的相关教程基本都是3.0，3.2版本的Spring Security，由于我使用的是4.0的，有些地方和之前版本不同，导致遇到不少坑。在此记录下我">
+
+    
+    <link rel="alternative" href="/atom.xml" title="no zheteng no life" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo1.png" alt="no zheteng no life" title="no zheteng no life"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="no zheteng no life">no zheteng no life</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/12/02/SpringSecurity-1/" title="Spring Security学习----登录、注销" itemprop="url">Spring Security学习----登录、注销</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Xianglin Chen" target="_blank" itemprop="author">Xianglin Chen</a>
+		
+  <p class="article-time">
+    <time datetime="2015-12-02T02:12:51.000Z" itemprop="datePublished"> 發表於 2015-12-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			
+		
+		</div>
+		
+		<blockquote>
+<p>本文使用Spring Security4.0.3,Spring和SpringMVC均为4.2.3以及MyBatis3.3.0</p>
+<p>（本文省略了spring以及springMVC的配置）</p>
+</blockquote>
+<p>&emsp;&emsp;最近在自学Spring Security网上找的相关教程基本都是3.0，3.2版本的Spring Security，由于我使用的是4.0的，有些地方和之前版本不同，导致遇到不少坑。在此记录下我所遇到的坑吧。<br></p><br>&gt;创建Spring Security配置文件spring-security.xml内容如下（此配置使用最基本的用户名和密码写在配置文件的方式）<br><pre><code> &lt; ?xml version=”1.0” encoding=”UTF-8”?&gt;<br>&lt; beans xmlns=”<a href="http://www.springframework.org/schema/beans" target="_blank" rel="external">http://www.springframework.org/schema/beans</a>“<br>       xmlns:xsi=”<a href="http://www.w3.org/2001/XMLSchema-instance" target="_blank" rel="external">http://www.w3.org/2001/XMLSchema-instance</a>“<br>       xmlns:security=”<a href="http://www.springframework.org/schema/security" target="_blank" rel="external">http://www.springframework.org/schema/security</a>“<br>       xsi:schemaLocation=”<a href="http://www.springframework.org/schema/beans" target="_blank" rel="external">http://www.springframework.org/schema/beans</a><br>       <a href="http://www.springframework.org/schema/beans/spring-beans-4.0.xsd" target="_blank" rel="external">http://www.springframework.org/schema/beans/spring-beans-4.0.xsd</a><br>       <a href="http://www.springframework.org/schema/security" target="_blank" rel="external">http://www.springframework.org/schema/security</a><br>       <a href="http://www.springframework.org/schema/security/spring-security-4.0.xsd&quot;&gt;" target="_blank" rel="external">http://www.springframework.org/schema/security/spring-security-4.0.xsd&quot;&gt;</a><br>       &lt; security:http auto-config=”true” use-expressions=”true” &gt;<br>              &lt; security:intercept-url pattern=”/index.jsp” access=”hasRole(‘ROLE_ADMIN’)”&gt;<br>              &lt; security:access-denied-handler error-page=”/error.jsp”&gt;&lt; /security:access-denied-handler&gt;<br>              &lt; security:logout logout-url=”/logout” logout-success-url=”/login.jsp” invalidate-session=”true”   /&gt;<br>           &lt; security:csrf&gt;&lt; /security:csrf&gt;<br>       &lt; /security:http&gt;<br><br>       &lt; !– 配置一个认证管理器 –&gt;<br>       &lt; security:authentication-manager&gt;<br>              &lt; security:authentication-provider&gt;<br>                 &lt; security:user-service&gt;–&gt;<br>                           &lt;!&ndash; 这样的配置表示向系统中添加了一个用户 用户名和密码都为admin ,并且该用户拥有ROLE_USER角色（角色可以用逗号隔开） &ndash;&gt;<br>                     &lt; security:user name=”admin” password=”admin” authorities=”ROLE_USER”/&gt;<br>                 &lt; /security:user-service&gt;<br>              &lt; /security:authentication-provider&gt;<br>       &lt; /security:authentication-manager&gt;<br>&lt; /beans&gt;<br></code></pre><br><p>&emsp;&emsp;下面说下spring-security.xml中一些关键的配置。&lt; security:intercept-url&gt;这个标签用来配置指定拦截的url，其中的pattern为你想要拦截的url,其中的access属性为访问pattern中设置的url所需的权限（权限必须以大写的ROLE开头）。&lt; security:access-denied-handler&gt;则为不具备权限的用户访问后跳转的页面，error-page属性中配置想要跳转的页面。<br></p><br><p>&emsp;&emsp;&lt; security:logout logout-url=”/logout” logout-success-url=”/login.jsp” invalidate-session=”true”   /&gt;为配置注销功能，其中的logout-url属性注销是请求的链接地址可以改成自己想要的，logout-success-url为注销成功后跳转的页面，invalidate-session为注销后是否使session失效。由于SpringSecurity4中默认启用了csrf，而csrf过滤post请求因此若不关闭csrf则只能通过post方式来请求注销链接，另外还需添加参数_csrf,获取具体参数值会在后面提到。 若要关闭csrf只需将&lt; security:csrf disabled=”true”&gt;&lt; /security:csrf&gt;的disabled属性设置为ture。</p><br><p>&lt; security:user &gt;标签用来设置登录所需的用户名和密码其中authorities属性为该用户所具有的权限。<br></p><br>&gt;web.xml配置<br><pre><code>    &lt; context-param&gt;<br>        &lt; param-name&gt;contextConfigLocation<br>        &lt; param-value&gt;/WEB-INF/config/spring-security.xml<br>    &lt; /context-param&gt;<br><br>    &lt; filter&gt;<br>        &lt; filter-name&gt;springSecurityFilterChain<br>        &lt; filter-class&gt;org.springframework.web.filter.DelegatingFilterProxy<br>    <br>    &lt; filter-mapping&gt;<br>        &lt; filter-name&gt;springSecurityFilterChain<br>        &lt; url-pattern&gt;/*<br>    &lt; /filter-mapping&gt;<br></code></pre><br><p>&emsp;&emsp;通过以上配置我们便实现了一个简单的登录权限验证，访问index.jsp便会跳转到SpringSecurity提供的一个默认的登录页面。我们也可以使用自己的登录页面，只需将spring-security.xml改为如下配置：<br></p>
+
+<pre><code> < ?xml version="1.0" encoding="UTF-8"?>
+< beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+       < security:http auto-config="true" use-expressions="true" >
+              < security:intercept-url pattern="/index.jsp" access="hasRole('ROLE_ADMIN')">
+              < security:access-denied-handler error-page="/error.jsp">< /security:access-denied-handler>
+              <font color="#FF0000">< security:form-login login-page="/login.jsp" default-target-url="/index.jsp"
+                           authentication-failure-url="/login?error" username-parameter="username"
+                           password-parameter="password" /></font>
+              < security:logout logout-url="/logout" logout-success-url="/login.jsp" invalidate-session="true"   />
+           < security:csrf>< /security:csrf>
+       < /security:http>
+
+       < !-- 配置一个认证管理器 -->
+       < security:authentication-manager>
+              < security:authentication-provider>
+                 < security:user-service>-->
+                           &lt;!&ndash; 这样的配置表示向系统中添加了一个用户 用户名和密码都为admin ,并且该用户拥有ROLE_USER角色（角色可以用逗号隔开） &ndash;&gt;
+                     < security:user name="admin" password="admin" authorities="ROLE_USER"/>
+                 < /security:user-service>
+              < /security:authentication-provider>
+       < /security:authentication-manager>
+< /beans>
+</code></pre>
+<p>&emsp;&emsp;注意第12行， < security:form-login>通过该标签来自定义登录页面其中的login-page为你自己的登录页面，default-target-url为登陆成功后默认跳转的页面，authentication-failure-url为认证失败后跳转的链接， username-parameter和password-parameter用来设置登录用户名和密码的请求name，默认为j_username,j_password 。</p>
+<p>此后我们访问index.jsp将会跳转到我们所自定义的登录页面。登录页面的表单写法如下</p>
+
+<pre><code>< form action="login" method="post">
+    < input type="text" name="username" vaule=""/>  
+    <font color="#FF0000">< input type="password" name="password" value=""/></font>
+< !-- name的值对应spring-security.xml中username-parameter和password-parameter所配置的填写 -->
+    <font color="#FF0000">< input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"</font>
+< !-- 此处为启用了csrf后的写法目的是为了传csrf参数，如果未启用csrf则不许这个input -->
+    < input type="submit" name="submit" value="submit"/>
+< /form>
+</code></pre>
+
+<p>&emsp;&emsp;下面说下通过数据库中存储的用户名和密码来登录的方法。数据库中起码要有用户表和权限表，以下为创建的数据库表<br></p><br><pre><code>  create table T_USERS<br>  (<br>    username VARCHAR2(50) not null,<br>    password VARCHAR2(60),<br>    enabled  NUMBER(1)<br>  );<br>  alter table T_USERS<br>    add constraint PK_USERS_USERNAME primary key (USERNAME) ;<br><br> create table T_USER_ROLES<br> (<br>   user_role_id NUMBER(10) not null,<br>   username     VARCHAR2(50),<br>   role         VARCHAR2(50)<br> );<br> alter table T_USER_ROLES<br>   add constraint PK_USER_ROLES primary key (USER_ROLE_ID);<br> alter table T_USER_ROLES<br>   add constraint IDX_UNI_ROLE_USERNAME unique (USERNAME, ROLE);</code></pre><br><p>向表中插入数据</p><br><pre><code>insert into T_USERS (USERNAME, PASSWORD, ENABLED)<br>values (‘chen’, ‘123456’, 1);<br><br>insert into T_USER_ROLES (USER_ROLE_ID, USERNAME, ROLE)<br>values (1, ‘chen’, ‘ROLE<em>ADMIN’);<br></em></code></pre><br><p>&emsp;&emsp;用户表中，必须要有”用户名/密码/帐号的有效状态”这三个字段，enabled字段的值为1代表用户处于有效状态。权限表中的权限字段的数据必须要以“ROLE”开头。否则登陆后会提示用户无权限。</p><br><pre><code>&lt; ?xml version=”1.0” encoding=”UTF-8”?&gt;<br>&lt; beans xmlns=”<a href="http://www.springframework.org/schema/beans" target="_blank" rel="external">http://www.springframework.org/schema/beans</a>“<br>       xmlns:xsi=”<a href="http://www.w3.org/2001/XMLSchema-instance" target="_blank" rel="external">http://www.w3.org/2001/XMLSchema-instance</a>“<br>       xmlns:security=”<a href="http://www.springframework.org/schema/security" target="_blank" rel="external">http://www.springframework.org/schema/security</a>“<br>       xsi:schemaLocation=”<a href="http://www.springframework.org/schema/beans" target="_blank" rel="external">http://www.springframework.org/schema/beans</a><br>       <a href="http://www.springframework.org/schema/beans/spring-beans-4.0.xsd" target="_blank" rel="external">http://www.springframework.org/schema/beans/spring-beans-4.0.xsd</a><br>       <a href="http://www.springframework.org/schema/security" target="_blank" rel="external">http://www.springframework.org/schema/security</a><br>       <a href="http://www.springframework.org/schema/security/spring-security-4.0.xsd&quot;&gt;" target="_blank" rel="external">http://www.springframework.org/schema/security/spring-security-4.0.xsd&quot;&gt;</a><br>       &lt; security:http auto-config=”true” use-expressions=”true” &gt;<br>              &lt; security:intercept-url pattern=”/index.jsp” access=”hasRole(‘ROLE_ADMIN’)”&gt;<br>              &lt; security:access-denied-handler error-page=”/error.jsp”&gt;&lt; /security:access-denied-handler&gt;<br>              &lt; security:form-login login-page=”/login.jsp” default-target-url=”/index.jsp”<br>                           authentication-failure-url=”/login?error” username-parameter=”username”<br>                           password-parameter=”password” /&gt;<br>              &lt; security:logout logout-url=”/logout” logout-success-url=”/login.jsp” invalidate-session=”true”   /&gt;<br>           &lt; security:csrf&gt;&lt; /security:csrf&gt;<br>       &lt; /security:http&gt;<br><br>       &lt; !– 配置一个认证管理器 –&gt;<br>       &lt; security:authentication-manager&gt;<br>              &lt; security:authentication-provider&gt;<br>     <font color="#FF0000">&lt; security:jdbc-user-service data-source-ref=”dataSource”<br>             users-by-username-query=”select username username,password password, enabled enabled from users where username=?”<br>             authorities-by-username-query=”select username username, role role from t_user_roles where username=? “&gt;</font><br>              &lt; /security:authentication-provider&gt;<br>       &lt; /security:authentication-manager&gt;<br>&lt; /beans&gt;<br></code></pre><br><p>&emsp;&emsp;使用&lt; security:jdbc-user-service&gt;标签来查询数据库中的用户，用户的别名必须为username，密码的别名必须为password，用户有效状态的别名必须为enabled，权限角色的别名必须为role。users-by-username-query配置根据用户名查寻用户的sql，authorities-by-username-query配置根据用户名查寻权限的sql。<br></p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Spring-Security/">Spring-Security</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Java/">Java</a><a href="/tags/Spring-Security/">Spring Security</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2015/12/02/SpringSecurity-1/" data-title="Spring Security学习----登录、注销 | no zheteng no life" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/11/20/jsClosure/"  title="">
+ <strong>下一篇：</strong><br/> 
+ <span>(no title)
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Javascript/" title="Javascript">Javascript<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Spring-Security/" title="Spring-Security">Spring-Security<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/windows/" title="windows">windows<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Linux/" title="Linux">Linux<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Windows/" title="Windows">Windows<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CentOS7/" title="CentOS7">CentOS7<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/node-js/" title="node.js">node.js<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/js/" title="js">js<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML/" title="HTML">HTML<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-Security/" title="Spring Security">Spring Security<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java/" title="Java">Java<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> I&#39;m Xianglin Chen , a noob to coding and linux. <br/>
+			No zuo no die I just wanna try</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/cxl123156" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:chen9294@hotmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Xianglin Chen">Xianglin Chen</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
