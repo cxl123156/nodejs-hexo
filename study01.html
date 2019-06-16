@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        html {
+            width: 100vw;
+            height: 100vh;
+            background: gainsboro;
+        }
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+        #app {
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+        .square {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            /*transform: translateY(-50%);*/
+            transform: translateX(-50%);
+            width: 76.8vh;
+            height: 76.8vh;
+            float: left;
+            border: .1vh solid white;
+        }
+        .empty {
+            color: white;
+            background: white;
+        }
+        .nonempty {
+            background: pink;
+        }
+        .normal {
+            width: 19vh;
+            height: 19vh;
+            border: .1vh solid white;
+            display: inline-block;
+            color: white;
+            font-weight: bolder;
+            font-size: 24px;
+            /*display: flex;*/
+            /*justify-content: center;*/
+            /*align-items: center;*/
+        }
+        .number{
+            /*flex: 1;*/
+text-align: center;
+            /*vertical-align: middle;*/
+            margin-top: 9.5vh;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="square">
+        <div :class="['square'+index,'normal',(index==emptyIndex)?'empty':'nonempty']" v-for="(item,index) in arr"
+             @click="move(item,index)">
+            <div class="number">{{item}}</div>
+
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    var vue = new Vue({
+        el: '#app',
+        data: {
+            emptyIndex: 15,
+            arr: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            flag: false
+        },
+        methods: {
+            sortNumber(a, b) {
+                console.log(a + ':' + b);
+                return Math.random() > .5 ? -1 : 1;
+            },
+            exchange(arr, index1, index2) {
+                arr[index1] = arr.splice(index2, 1, arr[index1])[0]
+                return arr
+            },
+            isDone() {
+                //判断是否成功
+                let flag = true;
+                for (let i = 0; i < 16; i++) {
+                    if (this.arr[i] != i+1) {
+                        flag = false;
+                    }
+                }
+                this.flag = flag;
+                if (this.flag) {
+                    alert('挑战成功！')
+                }
+            },
+            move(item, index) {
+                let tempEmptyIndex = this.emptyIndex;
+                //判断点击事件是否需要移动滑块
+                let up = index + 4 == tempEmptyIndex;
+                let bottom = index - 4 == tempEmptyIndex;
+                let left = index + 1 == tempEmptyIndex;
+                let right = index - 1 == tempEmptyIndex;
+                if (up || bottom || left || right) {
+                    //交换点击的滑块和空白块
+                    this.exchange(this.arr, tempEmptyIndex, index);
+                    this.emptyIndex = index;
+                }
+            }
+        },
+        mounted() {
+            this.arr.sort(this.sortNumber);
+            this.arr.push(16);
+            console.log(this.arr);
+            this.isDone();
+        }
+    });
+</script>
+</html>
